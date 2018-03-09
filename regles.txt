@@ -1,0 +1,45 @@
+1 séminaire consiste à réunir un certain nombre de personnes autour d'un thème particulier.
+1 séminaire dure soit 1/2 journée (matin ou après-midi), soit la journée complète.
+1 séminaire se déroule chez un prestataire (restaurant muni de salles deconférences), où pause(s) et déjeuner sont pris sur place.
+
+Durant chaque 1/2 journée, 1 pause est proposée (café, thé, boissons fraîches, encas, etc).
+Lorsqu'un séminaire dure toute une journée, le déjeuner est prévu.
+Lorsqu'un séminaire dure 1/2 journée, le déjeuner n'est pas systématique.
+
+1 animateur pilote le séminaire. 
+L'animateur prévoit 3 activités par 1/2 journée, 
+fournit le programme du séminaire au moins 1 mois avant le séminaire.
+Il indique si le séminaire dure 1/2 journée ou la journée complète. 
+Il indique également, lorsque le séminaire dure 1/2 journée, s'il s'agit du matin ou de l'après-midi, et si le déjeuner est prévu.
+
+Pour les activités, l'animateur peut convier 1 ou plusieurs conférenciers afin qu'ils exposent leur point de vue sur le thème du séminaire. 
+
+Chaque conférencier fait ainsi une présentation dont il fournit le titre au moins 1 mois avant le séminaire, et les supports (transparents) au
+moins 2 semaines avant le séminaire. 
+
+Chaque conférencier précise le montant de sa prestation au moins 1 mois avant le séminaire.
+
+
+
+Tout séminaire est annoncé 1 mois avant sa planification, avec le nombre maximum de participants possible 
+(sans compter l'animateur et les conférenciers éventuels), 
+et le prix du séminaire pour chaque participant. 
+
+Les personnes intéressées s'inscrivent, tant qu'il existe des places disponibles.
+Une liste d'attente est mise en place en cas d'annulation d'inscription.
+L'ensemble des participants à 1 séminaire doit être fixé 1 semaine avant le séminaire. 
+
+Lorsque le nombre des inscrits est insuffisant (moins de la moitié des places prévues sont réservées), le séminaire est annulé.
+
+L'entreprise réserve pour ce séminaire une salle, les pauses et les repas 
+chez l'un de ces prestataires d'accueil, 1 mois à l'avance (lors de l'annonce du séminaire), 
+et le confirme 1 semaine avant.
+
+Pour chaque prestataire, on connait le tarif pour la salle et chaque repas et pause (par personne).
+L'entreprise ne peut organiser plus de 3 séminaires le même jour.
+Lorsqu'une personne s'inscrit à un séminaire, elle indique ses informations personnelles. 
+
+Ses informations doivent être également connues pour l'animateur et les conférenciers du
+séminaire. 
+Lorsque les inscriptions sont closes, l'entreprise transmet à son prestataire le
+nombre total de personnes
