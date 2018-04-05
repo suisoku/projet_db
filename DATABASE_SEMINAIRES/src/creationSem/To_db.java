@@ -14,11 +14,16 @@ import java.sql.Statement;
  *
  * @author Nord_38
  */
-public class add_to_db {
+public class To_db {
+    protected Connection conn;
 
-
-    public static void ajouter_seminaire(Connection conn, Seminaire sem) throws SQLException{
-        Statement st = conn.createStatement(); 
+    /******************** Constructor prend la connection pour tous ces methodes *************************/
+    public To_db(Connection connect){this.conn = connect;}
+    
+    
+    /******************** AJOUTER SEMINAIRE *************************/
+    public void ajouter_seminaire(Seminaire sem) throws SQLException{
+        Statement st = this.conn.createStatement(); 
         int id;
             
         /******************** AJOUTER SEMINAIRE *************************/
@@ -38,29 +43,34 @@ public class add_to_db {
                     + sem.getTheme() + "','"
                     + sem.getDejeuner() + "','"
                     + sem.getAnimateur() + "')"); 
+                    
             
-            
-           
-        /******************** AJOUTER CRENEAU *************************/
-          
-            st.executeUpdate("INSERT INTO CRENEAUX VALUES ('"
-                    + id + "','" 
-                    + sem.getCreneau(0).getMoment()  + "')");             
-            
-            
-            
-         /******************** AJOUTER ACTIVITES CRENEAU 1 *************************/
+         /******************** AJOUTER ACTIVITES CRENEAU 1/2 *************************/
+         
+         
+            /** RECHERCHE ID POUR INCREMENTER **/
             ResultSet result_idact = st.executeQuery("SELECT max(id_act) from ACTIVITEES");
             int id_act;
             
             if (result_idact.next()){
-                id_act = result_idact.getInt(1) +1 ;
+                id_act = result_idact.getInt(1);
                 result_idact.close();
             }else   {
                 System.out.println("no data found");
                 id_act= 0;
             }
+            
+            // *** AJOUTE CRENEAU DANS CRENEAU ET ACTIVITES CORRESPONDANTES ***/
             for(int i = 0 ;  i < sem.getCreneauxSize() ; i++){
+                
+                st.executeUpdate("INSERT INTO CRENEAUX VALUES ('"
+                    + id + "','" 
+                    + sem.getCreneau(i).getMoment()  + "')");
+               
+
+                id_act++;
+                
+                
                 st.executeUpdate("INSERT INTO ACTIVITEES VALUES ('"
                         + id_act + "','" 
                         + sem.getCreneau(i).getNom_act1() + "','" 
@@ -82,13 +92,25 @@ public class add_to_db {
                     + sem.getCreneau(i).getNom_act3() + "','" 
                     + id + "','" 
                     + sem.getCreneau(i).getMoment()+ "')");  
-
             }
-            
             st.close();
-            
-
     }
+    
+    
+    
+    /******************** AJOUTER Conference *************************/
+    public void ajouter_conference(Conference conf) throws SQLException{
+        Statement st = this.conn.createStatement(); 
+
+        st.executeUpdate("INSERT INTO CONFERENCES VALUES ('"
+                        + conf.getNumeroConf() + "','" 
+                        + conf.getId_sem() + "','" 
+                        + conf.getTitre() + "','" 
+                        + conf.getMontant() + "','"
+                        + conf.getSupport() + "')");  
+        st.close();
+    }
+     
     
 }
 

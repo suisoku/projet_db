@@ -11,9 +11,10 @@ package creationSem;
  */
 public class Conference {
     private int numeroConf;
+    private int id_sem;
     private String titre;
     private int montant;
-    private boolean Support;
+    private String Support;
 
     public int getNumeroConf() {
         return numeroConf;
@@ -21,6 +22,14 @@ public class Conference {
 
     public void setNumeroConf(int numeroConf) {
         this.numeroConf = numeroConf;
+    }
+
+    public int getId_sem() {
+        return id_sem;
+    }
+
+    public void setId_sem(int id_sem) {
+        this.id_sem = id_sem;
     }
 
     public String getTitre() {
@@ -39,11 +48,11 @@ public class Conference {
         this.montant = montant;
     }
 
-    public boolean isSupport() {
+    public String getSupport() {
         return Support;
     }
 
-    public void setSupport(boolean Support) {
+    public void setSupport(String Support) {
         this.Support = Support;
     }
     
