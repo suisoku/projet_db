@@ -12,6 +12,7 @@ import creationSem.To_db;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
+import reservations.Personne;
 
 /**
  *
@@ -60,7 +61,7 @@ public class interfacePrincipal {
         do{
             System.out.println("Tapez I: Faire une reservation");
             System.out.println("Tapez A: Annuler une reservation");
-            //System.out.println("Tapez E: Pour ajout de Evenement");
+            System.out.println("Tapez P: Pour ajout de Evenement");
             System.out.println("Tapez Q: Pour Quit");
 
             scanned = input.nextLine();
@@ -74,10 +75,10 @@ public class interfacePrincipal {
                     Conference conf = Saisie.une_conference();
                     transaction.ajouter_conference(conf);
                 }
-              /*  else if(scanned.equals("E")){
-                    Evenement ev = Saisie.un_evenement();
-                    transaction.ajouter_evenement(ev);
-                }*/
+                else if(scanned.equals("P")){
+                    Personne pers = Saisie.une_personne();
+                    transaction.ajouter_personne(pers);
+                }
             System.out.println("**********Retour Reserv/annul ***********");
             }while(!scanned.equals("Q"));
     }
