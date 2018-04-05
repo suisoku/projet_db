@@ -22,7 +22,7 @@ public class requetesbd {
 // Execute the query
         ResultSet rs = stmt.executeQuery("SELECT count(*) FROM animateur");
         while (rs.next()) {
-            System.out.println("Nombre de animateur : " + rs.getInt(1));
+            System.out.println("Nombre de animateur : "+ rs.getInt(1));
         }
 // Close the result set, statement and theconnection 
         rs.close();

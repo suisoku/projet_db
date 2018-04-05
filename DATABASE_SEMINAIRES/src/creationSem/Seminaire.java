@@ -16,22 +16,39 @@ public class Seminaire {
     private String theme;
     private Boolean dejeuner;
     private int animateur;
+    private double tarif;
     private ArrayList<Creneau> creneaux;
     private ArrayList<Conference> conferences;
     
     public Seminaire() {};
     
-    public void ajouterTheme(String theme){}
-    public void ajouterDejeuner(boolean dej){}
-    public void ajouterAnimateur(int anim){ this.animateur = anim;}
-    public void ajouterCreneau(Creneau c){}
-    public void ajouterConference(Conference conf){}
+    public void ajouterTheme(String theme){
+        this.theme = theme;
+    }
+    public void ajouterDejeuner(boolean dej){
+        this.dejeuner = dej;
+    }
     
+    public void ajouterAnimateur(int anim){ 
+        this.animateur = anim;
+    }
     
-    public String getTheme(){ return "";}
-    public boolean getDejeuner(){ return false;}
-    public int getAnimateur(){ return 0;}
-    public ArrayList<Creneau> getCreneau(){ return null;}
-    public ArrayList<Conference> getConference(){return null;}
+    public void ajouterCreneau(Creneau c){
+        creneaux.add(c);
+    }
     
+    public void ajouterConference(Conference conf){
+        conferences.add(conf);
+    }
+    
+    public void ajouterTarif( double tar){
+        this.tarif = tar;
+    }
+    
+    public String getTheme(){ return theme;}
+    public boolean getDejeuner(){ return dejeuner;}
+    public int getAnimateur(){ return animateur;}
+    public Creneau getCreneau(int index){ return creneaux.get(index);}
+    public Conference getConference(int index){return conferences.get(index);}
+    public double getTarif(){ return tarif; }
 }
