@@ -10,6 +10,9 @@ package models;
  * and open the template in the editor.
  */
 
+import creationSem.Seminaire;
+import creationSem.add_to_db;
+import interface_main.Saisie;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,13 +33,13 @@ public class ConnexionSGBD {
             Class.forName(jdbcDriver);// Get a connection to the database
             try (Connection conn = DriverManager.getConnection(dbUrl, username, password)) {
                 
-                // Etape de saisie
+            // Etape de saisie
+                Seminaire sem = Saisie.un_seminaire();
                 
-                
-                //Etape de ajout base de donne
-               Creation_Seminaire.creer_seminaire(conn);
-                
-                // Print information about connection warnings
+            //Etape de ajout base de donne  
+               add_to_db.ajouter_seminaire(conn, sem);  
+               
+            // Print information about connection warnings
                 SQLWarningsExceptions.printWarnings(conn);
             }
         } catch (SQLException se) {

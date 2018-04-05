@@ -5,14 +5,18 @@
  */
 package creationSem;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Nord_38
  */
-public abstract class add_to_db {
+public class add_to_db {
 
 
-    public void ajouter_seminaire(Seminaire sem){}
+    public static void ajouter_seminaire(Connection conn, Seminaire sem){
+   
+    }
     
 }
 

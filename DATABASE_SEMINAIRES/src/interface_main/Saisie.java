@@ -5,6 +5,7 @@
  */
 package interface_main;
 
+import creationSem.Conference;
 import creationSem.Creneau;
 import creationSem.Seminaire;
 import java.util.Scanner;
@@ -13,10 +14,10 @@ import java.util.Scanner;
  *
  * @author Nord_38
  */
-public abstract class saisie_sem {
+public class Saisie {
     
     
-    public Seminaire saisie_seminaire() {
+    public static Seminaire un_seminaire() {
         Seminaire sem = new Seminaire();
         Scanner input = new Scanner(System.in);
         
@@ -54,6 +55,8 @@ public abstract class saisie_sem {
         System.out.println("Nom activité 3:");
         cren1.ajouterAct(input.nextLine(), 3);
         
+        sem.ajouterCreneau(cren1);
+        
         System.out.println("Voulez vous saisir un deuxieme creneau ? O|N :");
         if(input.nextLine().equals("O")){
             cren2 = new Creneau();
@@ -68,11 +71,24 @@ public abstract class saisie_sem {
         
             System.out.println("Nom activité 3:");
             cren2.ajouterAct(input.nextLine(), 3);
+            
+            sem.ajouterCreneau(cren2);
         }
-        
-        
-        
-        
+        System.out.println("Saisir une conference (Au moins 1 obligatoire):");
+            Conference conf = new Conference();
+            System.out.println("1.a Saisir le numero du conferencier):");
+               conf.setNumeroConf(input.nextInt());
+            System.out.println("1.b Saisir le nom de la conference):");
+                conf.setTitre(input.nextLine());
+            System.out.println("1.b Saisir le montant de la conference):");
+                conf.setMontant(input.nextInt());
+            System.out.println("1.b Avez vous le support maintenent ? O|N):");
+            
+            if(input.nextLine().equals("O") )conf.setSupport(true);
+            else conf.setSupport(true);
+            
+            sem.ajouterConference(conf);
+                    
         return sem;
     }
     
