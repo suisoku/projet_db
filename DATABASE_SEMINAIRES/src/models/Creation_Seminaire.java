@@ -26,7 +26,10 @@ public class Creation_Seminaire {
         System.out.println("Veuillez saisir un animateur:");
         int animateur = sc.nextInt();
 
-        try (ResultSet rs_nom_anim = stmt.executeQuery("select nom from animateurs join  personnes on (id_anim = id_pers) where id_anim =" + animateur)) {
+        try (
+            ResultSet rs_nom_anim = stmt.executeQuery("select nom from animateurs join  personnes on (id_anim = id_pers) where id_anim =" + animateur)
+                
+            ) {
             if (rs_nom_anim.next() ) System.out.println("id_anim selectionné " + rs_nom_anim.getString(1));
             else   System.out.println("no data found");
             

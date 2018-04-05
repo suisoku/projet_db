@@ -30,4 +30,17 @@ public class Creneau {
     public String getMoment(){
         return this.moment;
     }
+
+    public String getNom_act1() {
+        return nom_act1;
+    }
+
+    public String getNom_act2() {
+        return nom_act2;
+    }
+
+    public String getNom_act3() {
+        return nom_act3;
+    }
+    
 }

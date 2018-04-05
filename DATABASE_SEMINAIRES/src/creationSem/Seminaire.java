@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Seminaire {
     
     private String theme;
-    private Boolean dejeuner;
+    private String dejeuner;
     private int animateur;
     private double tarif = 0;
     private ArrayList<Creneau> creneaux = new ArrayList();
@@ -25,7 +25,7 @@ public class Seminaire {
     public void ajouterTheme(String theme){
         this.theme = theme;
     }
-    public void ajouterDejeuner(boolean dej){
+    public void ajouterDejeuner(String dej){
         this.dejeuner = dej;
     }
     
@@ -46,9 +46,10 @@ public class Seminaire {
     }
     
     public String getTheme(){ return theme;}
-    public boolean getDejeuner(){ return dejeuner;}
+    public String getDejeuner(){ return dejeuner;}
     public int getAnimateur(){ return animateur;}
     public Creneau getCreneau(int index){ return creneaux.get(index);}
     public Conference getConference(int index){return conferences.get(index);}
     public double getTarif(){ return tarif; }
+    public int getCreneauxSize(){ return this.creneaux.size(); }
 }

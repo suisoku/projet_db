@@ -34,14 +34,14 @@ public class Saisie {
         System.out.println("Voulez vous un dejeuner quoi qu'il arrive ? O/N ");
         
         if(input.nextLine().equals("O")){
-            sem.ajouterDejeuner(true);
+            sem.ajouterDejeuner("TRUE");
         }
-        else sem.ajouterDejeuner(false); // peut etre overrided en cas d'une journée complete
+        else sem.ajouterDejeuner("FALSE"); // peut etre overrided en cas d'une journée complete
         
-        System.out.println("saisir Tarif:");
-        sem.ajouterTarif(input.nextInt());
+       // System.out.println("saisir Tarif:");
+       // sem.ajouterTarif(input.nextInt());
       //  input.nextLine(); // to avoid skipping issues after next int
-    /*    
+        
         System.out.println("Saisir votre premier creneau:");
         System.out.println("Saisir le moment du creneau 1, Matin / Apresmidi [Matin|Aprem] :");
         
@@ -78,6 +78,7 @@ public class Saisie {
             
             sem.ajouterCreneau(cren2);
         }
+        /*
         System.out.println("Saisir une conference (Au moins 1 obligatoire):");
             Conference conf = new Conference();
             System.out.println("1.a Saisir le numero du conferencier:");
