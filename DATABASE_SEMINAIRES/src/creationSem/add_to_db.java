@@ -29,10 +29,12 @@ public class add_to_db {
                         + sem.getTheme() + "','"
                         + sem.getTarif() + "','"
                         + sem.getDejeuner() + "','"
-                        + sem.getAnimateur() + "'");
+                        + sem.getAnimateur() + "')");
             }
             else   System.out.println("no data found");
             
+        }catch(SQLException e){
+            System.out.println(e.getSQLState());
         }
         
         

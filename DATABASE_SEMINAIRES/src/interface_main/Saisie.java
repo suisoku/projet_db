@@ -29,7 +29,7 @@ public class Saisie {
         
         System.out.println("Veuillez saisir le numero de l'Animateur:");
         sem.ajouterAnimateur(input.nextInt());
-        
+        input.nextLine(); // to avoid skipping issues after next int
         
         System.out.println("Voulez vous un dejeuner quoi qu'il arrive ? O/N ");
         
@@ -38,6 +38,10 @@ public class Saisie {
         }
         else sem.ajouterDejeuner(false); // peut etre overrided en cas d'une journée complete
         
+        System.out.println("saisir Tarif:");
+        sem.ajouterTarif(input.nextInt());
+      //  input.nextLine(); // to avoid skipping issues after next int
+    /*    
         System.out.println("Saisir votre premier creneau:");
         System.out.println("Saisir le moment du creneau 1, Matin / Apresmidi [Matin|Aprem] :");
         
@@ -76,19 +80,21 @@ public class Saisie {
         }
         System.out.println("Saisir une conference (Au moins 1 obligatoire):");
             Conference conf = new Conference();
-            System.out.println("1.a Saisir le numero du conferencier):");
+            System.out.println("1.a Saisir le numero du conferencier:");
                conf.setNumeroConf(input.nextInt());
-            System.out.println("1.b Saisir le nom de la conference):");
+               input.nextLine(); // to avoid skipping issues after next int
+            System.out.println("1.b Saisir le nom de la conference:");
                 conf.setTitre(input.nextLine());
-            System.out.println("1.b Saisir le montant de la conference):");
+            System.out.println("1.b Saisir le montant de la conference:");
                 conf.setMontant(input.nextInt());
+                input.nextLine(); // to avoid skipping issues after next int
             System.out.println("1.b Avez vous le support maintenent ? O|N):");
             
             if(input.nextLine().equals("O") )conf.setSupport(true);
             else conf.setSupport(true);
             
             sem.ajouterConference(conf);
-                    
+          */          
         return sem;
     }
     

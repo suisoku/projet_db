@@ -16,9 +16,9 @@ public class Seminaire {
     private String theme;
     private Boolean dejeuner;
     private int animateur;
-    private double tarif;
-    private ArrayList<Creneau> creneaux;
-    private ArrayList<Conference> conferences;
+    private double tarif = 0;
+    private ArrayList<Creneau> creneaux = new ArrayList();
+    private ArrayList<Conference> conferences = new ArrayList();
     
     public Seminaire() {};
     
