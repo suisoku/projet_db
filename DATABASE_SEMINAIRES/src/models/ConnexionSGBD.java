@@ -11,9 +11,11 @@ package models;
  */
 
 import creationSem.Conference;
+import creationSem.Evenement;
 import creationSem.Seminaire;
 import creationSem.To_db;
 import interface_main.Saisie;
+import interface_main.interfacePrincipal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -38,30 +40,23 @@ public class ConnexionSGBD {
            
                 
             //Etape de ajout base de donne 
-            To_db transaction = new To_db(conn);
-            
-            Scanner input = new Scanner(System.in);
-            String scanned;
-            
-            do{
-                System.out.println("Tapez S: Pour ajout de seminaire");
-                System.out.println("Tapez C: Pour ajout de Conference");
-                System.out.println("Tapez E: Pour Exit");
-            
-                scanned = input.nextLine();
-                
-            
-                    if(scanned.equals("S")){
-                        Seminaire sem = Saisie.un_seminaire();
-                        transaction.ajouter_seminaire(sem);
-                    } 
-                    else if(scanned.equals("C")){
-                        Conference conf = Saisie.une_conference();
-                        transaction.ajouter_conference(conf);
-                    }
+             Scanner input = new Scanner(System.in);
+             String scanned;
+                do{
+                    System.out.println("Tapez 1: Groupe d'actions seminaire/etc");
+                    System.out.println("Tapez 2: Groupe d'actions reservations/annulations");
+                    System.out.println("Tapez Q: Pour Quit");
                     
-                }while(!scanned.equals("E"));
-                
+                    scanned = input.nextLine();
+                    
+                    if(scanned.equals("1")){
+                        interfacePrincipal.actionsSeminaire(conn);
+                    }
+                    else if(scanned.equals("2")){
+                        interfacePrincipal.actionsReservation(conn);
+                    }
+                    System.out.println("**********Retour MenuActions ***********");
+                }while(!scanned.equals("Q"));
                
             
             // Print information about connection warnings

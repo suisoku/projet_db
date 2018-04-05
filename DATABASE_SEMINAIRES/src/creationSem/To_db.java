@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import reservations.Personne;
+import reservations.Reservation;
 
 /**
  *
@@ -110,7 +112,60 @@ public class To_db {
                         + conf.getSupport() + "')");  
         st.close();
     }
-     
     
+    /******************** AJOUTER Evenement
+     * @param ev
+     * @throws java.sql.SQLException *************************/
+    
+    public void ajouter_evenement(Evenement ev) throws SQLException{
+        Statement st = this.conn.createStatement(); 
+
+        
+        st.executeUpdate("INSERT INTO EVENEMENTS VALUES ('"
+                        + ev.getId_sem() 
+                        + "',to_date('" + ev.getDate() + "', 'DD/MM/YYYY'),'" 
+                        + ev.getNomSalle() + "','"
+                        + ev.getId_prest()+ "','" 
+                        + ev.getTarif()+ "','AVAILABLE')"); 
+       //st.executeUpdate("INSERT INTO EVENEMENTS VALUES ('1', to_date('22/10/2018', 'DD/MM/YYYY') , '2A' , '0', '22','AVAILABLE')");
+       st.close();
+    }
+     
+  
+    /******************** AJOUTER Reservation *************************/
+     
+    public void ajouter_reservation(Reservation reserv) throws SQLException{
+        Statement st = this.conn.createStatement(); 
+
+        st.executeUpdate("INSERT INTO RESERVATIONS VALUES ('"
+                        + reserv.getId_personne() + "','" 
+                        + reserv.getId_sem() 
+                        + "',to_date('" + reserv.getDate_sem() + "', 'DD/MM/YYYY'),sysdate(), 'CONFIRME' )");  
+        st.close();
+    }
+    
+    public void ajouter_personne(Personne pers) throws SQLException{
+        Statement st = this.conn.createStatement(); 
+        int id;
+            
+        
+        ResultSet result_idpers = st.executeQuery("SELECT max(id_pers) from PERSONNES");
+            
+        if (result_idpers.next()){
+            id = result_idpers.getInt(1) +1 ;
+            result_idpers.close();
+        }else   {
+            System.out.println("no data found");
+            id = 0;
+        }
+        st.executeUpdate("INSERT INTO PERSONNES VALUES ('"
+                + id + "','" 
+                + pers.getNom() + "','" 
+                + pers.getPrenom() + "','" 
+                + pers.getAdresse() + "','" 
+                + pers.getTel() + "','" 
+                + pers.getMail() + "')");
+        st.close();
+    }
 }
 

@@ -16,7 +16,6 @@ public class Seminaire {
     private String theme;
     private String dejeuner;
     private int animateur;
-    private double tarif = 0;
     private ArrayList<Creneau> creneaux = new ArrayList();
     private ArrayList<Conference> conferences = new ArrayList();
     
@@ -41,15 +40,11 @@ public class Seminaire {
         conferences.add(conf);
     }
     
-    public void ajouterTarif( double tar){
-        this.tarif = tar;
-    }
     
     public String getTheme(){ return theme;}
     public String getDejeuner(){ return dejeuner;}
     public int getAnimateur(){ return animateur;}
     public Creneau getCreneau(int index){ return creneaux.get(index);}
     public Conference getConference(int index){return conferences.get(index);}
-    public double getTarif(){ return tarif; }
     public int getCreneauxSize(){ return this.creneaux.size(); }
 }
