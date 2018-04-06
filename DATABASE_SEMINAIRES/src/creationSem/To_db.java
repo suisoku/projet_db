@@ -211,7 +211,9 @@ public class To_db {
     public void annulation_ev(Evenement ev) throws SQLException {
         Statement st = this.conn.createStatement(); 
         
-        
+        ResultSet nb_places = st.executeQuery("SELECT nbplaces from SALLES natural join (PRESTATAIRES natural join  ");
+            
+        if (nb_places.next() ){
 
     }
 
