@@ -52,6 +52,7 @@ public class interfacePrincipal {
                         System.out.println("creation requete");
                         transaction.ajouter_evenement(ev);
                     }
+                System.out.println();
                 System.out.println("**********Retour Actions seminaires ***********");
                 }while(!scanned.equals("Q"));
     }
@@ -85,6 +86,8 @@ public class interfacePrincipal {
                     Personne pers = Saisie.une_personne();
                     transaction.ajouter_personne(pers);
                 }
+            System.out.println("Annulation effectue");
+            System.out.println();
             System.out.println("**********Retour Reserv/annul ***********");
             }while(!scanned.equals("Q"));
     }
@@ -115,7 +118,33 @@ public class interfacePrincipal {
                     transaction.annulation_ev(ev);
                     
                 }
+            System.out.println();
             System.out.println("**********Retour Edition ***********");
             }while(!scanned.equals("Q"));
+    }
+
+    public static void actionsAfficher(Connection conn) {
+        Affichage aff = new Affichage(conn);
+        
+        Scanner input = new Scanner(System.in);
+        
+        String scanned;
+
+        do{
+            System.out.println("Tapez 1: Afficher reservations");
+            System.out.println("Tapez ...: En cours de construction");
+            System.out.println("Tapez Q: Pour Quit");
+
+            scanned = input.nextLine();
+
+
+                if(scanned.equals("1")){
+                    aff.afficher_reservations();
+                } 
+
+            System.out.println();
+            System.out.println("**********Retour affichage ***********");
+            }while(!scanned.equals("Q"));
+        
     }
 }

@@ -210,11 +210,44 @@ public class To_db {
     
     public void annulation_ev(Evenement ev) throws SQLException {
         Statement st = this.conn.createStatement(); 
+        double nb_place_salle = 0;
+        double nb_reservations = 0;
         
-        ResultSet nb_places = st.executeQuery("SELECT nbplaces from SALLES natural join (PRESTATAIRES natural join  ");
+        ResultSet nb_places = st.executeQuery("SELECT nbplaces from salles NATURAL JOIN evenements where id_sem =" +
+                                + ev.getId_sem() +     
+                                " AND date_sem=to_date('" + ev.getDate() + "', 'DD/MM/YYYY')");
             
-        if (nb_places.next() ){
-
+        if (nb_places.next() )nb_place_salle = nb_places.getInt(1);
+        else System.out.println("no data found");
+        nb_places.close();
+       
+        ResultSet reservations = 
+                st.executeQuery("select count(*) from reservations group by (id_sem, date_sem, statut) having (id_sem ="
+                + ev.getId_sem() +
+                " AND date_sem=to_date('" + ev.getDate() + "', 'DD/MM/YYYY') AND statut = 'CONFIRME')");
+        
+        if (reservations.next() )nb_reservations = reservations.getInt(1);
+        else System.out.println("no data found 2");
+        reservations.close();
+        
+        if((nb_reservations/nb_place_salle) < 0.5){
+            System.out.println("taux de remplissage a " + (nb_reservations/nb_place_salle));
+            System.out.println("Annulation du seminaire..");
+            
+            
+            st.executeUpdate("DELETE reservations WHERE id_sem ="
+                            + ev.getId_sem() +
+                            " AND date_sem=to_date('" + ev.getDate() + "', 'DD/MM/YYYY')"); 
+            
+            st.executeUpdate("DELETE evenements WHERE id_sem ="
+                            + ev.getId_sem() +
+                            " AND date_sem=to_date('" + ev.getDate() + "', 'DD/MM/YYYY')");
+            
+            
+        }
+        
+        
+        st.close();
     }
 
 }

@@ -148,7 +148,7 @@ public class Saisie {
         
         
             
-        System.out.println("Saisir le id du client (si non: le saisir au prealable grace a 'P'");
+        System.out.println("Saisir le id du client ");
             reserv.setId_personne(input.nextInt());
             input.nextLine(); // to avoid skipping issues after next int
             
