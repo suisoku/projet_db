@@ -45,6 +45,7 @@ public class ConnexionSGBD {
                 do{
                     System.out.println("Tapez 1: Groupe d'actions seminaire/etc");
                     System.out.println("Tapez 2: Groupe d'actions reservations/annulations");
+                    System.out.println("Tapez 3: Groupe d'actions editer/confirmer evenement etc");
                     System.out.println("Tapez Q: Pour Quit");
                     
                     scanned = input.nextLine();
@@ -54,6 +55,9 @@ public class ConnexionSGBD {
                     }
                     else if(scanned.equals("2")){
                         interfacePrincipal.actionsReservation(conn);
+                    }
+                    else if(scanned.equals("3")){
+                        interfacePrincipal.actionsEditer(conn);
                     }
                     System.out.println("**********Retour MenuActions ***********");
                 }while(!scanned.equals("Q"));

@@ -5,10 +5,20 @@
  */
 package creationSem;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import reservations.Personne;
 import reservations.Reservation;
 
@@ -126,23 +136,10 @@ public class To_db {
                         + "',to_date('" + ev.getDate() + "', 'DD/MM/YYYY'),'" 
                         + ev.getNomSalle() + "','"
                         + ev.getId_prest()+ "','" 
-                        + ev.getTarif()+ "','AVAILABLE')"); 
-       //st.executeUpdate("INSERT INTO EVENEMENTS VALUES ('1', to_date('22/10/2018', 'DD/MM/YYYY') , '2A' , '0', '22','AVAILABLE')");
+                        + ev.getTarif()+ "','AVAILABLE')");
        st.close();
     }
      
-  
-    /******************** AJOUTER Reservation *************************/
-     
-    public void ajouter_reservation(Reservation reserv) throws SQLException{
-        Statement st = this.conn.createStatement(); 
-
-        st.executeUpdate("INSERT INTO RESERVATIONS VALUES ('"
-                        + reserv.getId_personne() + "','" 
-                        + reserv.getId_sem() 
-                        + "',to_date('" + reserv.getDate_sem() + "', 'DD/MM/YYYY'),sysdate(), 'CONFIRME' )");  
-        st.close();
-    }
     
     public void ajouter_personne(Personne pers) throws SQLException{
         Statement st = this.conn.createStatement(); 
@@ -167,5 +164,56 @@ public class To_db {
                 + pers.getMail() + "')");
         st.close();
     }
+    
+    
+    /******************** AJOUTER Reservation *************************/
+     
+    public void ajouter_reservation(Reservation reserv) throws SQLException{
+        Statement st = this.conn.createStatement(); 
+        
+        String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        
+        st.executeUpdate("INSERT INTO RESERVATIONS VALUES ('"
+                        + reserv.getId_personne() + "','" 
+                        + reserv.getId_sem() 
+        + "',to_date('" + reserv.getDate_sem() + "', 'DD/MM/YYYY'),to_date('" + timeStamp + "', 'DD/MM/YYYY'), 'CONFIRME' )");  
+        st.close();
+    }
+    
+        
+    /******************** ANNULER Reservation *************************/
+     
+    public void annuler_reservation(Reservation reserv) throws SQLException{
+        Statement st = this.conn.createStatement(); 
+        
+        String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        
+        st.executeUpdate("UPDATE RESERVATIONS SET STATUT = 'ANNULE' WHERE id_pers="+
+                            reserv.getId_personne() + 
+                            " AND id_sem=" + reserv.getId_sem() +
+                            " AND date_sem=to_date('" + reserv.getDate_sem() + "', 'DD/MM/YYYY')");
+        
+        st.close();
+    }
+    // UPDATE RESERVATIONS SET STATUT = 'ANNNULE' WHERE id_pers=3 AND id_sem=1 AND date_sem=to_date('" + reserv.getDate_sem() + "', 'DD/MM/YYYY')
+
+    public void confirmer_clos(Evenement ev, String cloture) throws SQLException {
+        Statement st = this.conn.createStatement(); 
+        
+        String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        
+        st.executeUpdate("UPDATE EVENEMENTS SET STATUT = '"+ cloture +"' WHERE id_sem="+
+                    ev.getId_sem()+ 
+                    " AND date_sem=to_date('" + ev.getDate()+ "', 'DD/MM/YYYY')");
+        
+    }
+    
+    public void annulation_ev(Evenement ev) throws SQLException {
+        Statement st = this.conn.createStatement(); 
+        
+        
+
+    }
+
 }
 

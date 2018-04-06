@@ -146,7 +146,7 @@ public class Saisie {
         Reservation reserv = new Reservation();
         Scanner input = new Scanner(System.in);
         
-        System.out.println("Saisie d'une reservation");
+        
             
         System.out.println("Saisir le id du client (si non: le saisir au prealable grace a 'P'");
             reserv.setId_personne(input.nextInt());
@@ -184,4 +184,23 @@ public class Saisie {
            
         return pers;
     }
+
+    static Evenement look_evenement() {
+        Evenement ev = new Evenement();
+            Scanner input = new Scanner(System.in);
+
+            System.out.println("Saisie d'un evenement");
+
+            System.out.println("Saisir le numero du seminaire:");
+                ev.setId_sem(input.nextInt());
+                input.nextLine(); // to avoid skipping issues after next int
+
+            System.out.println("Saisir la date de representation dd/mm/yyyy");
+                ev.setDate(input.nextLine());
+                
+            return ev;
+    }
+    
+    
+    
 }
