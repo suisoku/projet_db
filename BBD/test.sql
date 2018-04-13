@@ -1,23 +1,22 @@
-Create or replace trigger contrainte_6
-after update on reservations
+Create or replace trigger trigger_clos
+after update on evenements
+for each row
 DECLARE
-idpers NUMBER(5);
+   nb_dispo NUMBER(5);
+   nb_reserve NUMBER(5);
 BEGIN
-	BEGIN
-		select count(statut) into EXECUTE from reservations where statut = 'ANNULE';
-	EXCEPTION
-	WHEN NO_DATA_FOUND THEN
-		EXECUTE := 0;
-	END;
-
-	IF ( EXECUTE > 0) THEN
-		select id_pers into idpers from reservations where STATUT ='ANNULE';
-		select id_sem into idsem from reservations where STATUT ='ANNULE'; -- on cherche l'evenement annulé (on suppose que la table n'a q'une valeur annulé)
-		select date_sem into datesem from reservations where STATUT ='ANNULE';
-
-		DELETE reservations WHERE statut ='ANNULE';
-		DELETE attentes WHERE rang =  (SELECT min(rang) FROM attentes WHERE id_sem = idsem AND date_sem = datesem);
+	IF (:NEW.statut = 'CLOS_30J') THEN
+		p_creneaux(:NEW.id_sem);
+		p_activite(:NEW.id_sem);
+		p_conference(:NEW.id_sem);
+	END IF;
+	
+	IF (:NEW.statut = 'CLOS_7J') THEN
+		p_support(:NEW.id_sem);
 	END IF;
 END;
 /
 show errors
+-- UPDATE evenements SET statut ='CLOS_7J' WHERE id_sem =2 AND date_sem='30-JUN-19';
+-- anu
+

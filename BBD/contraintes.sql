@@ -62,9 +62,9 @@ Create or replace procedure p_support
 IS
         SUPPORT_E VARCHAR(10);
 BEGIN
-select SUPPORT into SUPPORT_E from CONFERENCES where id_sem = idInput;
+select COUNT(SUPPORT) into SUPPORT_E from CONFERENCES where id_sem = idInput AND support ='FALSE';
 
-IF (SUPPORT_E != 'TRUE')
+IF (SUPPORT_E > 0)
 THEN Raise_application_error('-20101', 'erreur le support nest pas fournis-');
 END IF;
 END;
@@ -84,11 +84,13 @@ BEGIN
 	nb_dispo := place_salle(idInput, dateInput);
 	nb_reserve := place_reserve(idInput, dateInput); 
 	
-	IF ((nb_reserve / nb_dispo) <= 0.5) and (  dateInput - sysdate)  <=7  THEN
+	IF ((nb_reserve / nb_dispo) <= 0.5) THEN
 		DELETE reservations WHERE id_sem = idInput AND date_sem = dateInput;
 		DELETE evenements WHERE id_sem = idInput AND date_sem = dateInput;
 	END IF;
 END; 
 /
 show errors
+-- select place_reserve(2, '30-JUN-19')/place_dispo(2, '30-JUN-19') from dual;
+-- execute annul_eve(2, '30-JUN-19');
 

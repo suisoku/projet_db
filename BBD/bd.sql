@@ -139,8 +139,7 @@ CREATE TABLE ATTENTES(
   ID_SEM NUMBER(5),
 	DATE_SEM DATE,
    	DATE_R DATE,
-   	primary key(RANG),
-	foreign key (ID_PERS , ID_SEM, DATE_SEM) references RESERVATIONS(ID_PERS, ID_SEM, DATE_SEM)
+   	primary key(RANG)
 );
 
 CREATE SEQUENCE rang_seq start with -1 increment by 1 minvalue -1 maxvalue 10000;

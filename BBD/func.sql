@@ -43,7 +43,7 @@ show errors
 -- select count(*) from reservations group by (id_sem, date_sem, statut) having (id_sem = 9 AND date_sem = '02-10-2018' and statut = 'CONFIRME');
 -- select place_reserve(9 ,'02-OCT-2018') from dual;
 -- select place_salle(9 ,'02-OCT-2018') from dual;
--- select place_dispo(9 ,'02-OCT-2018') from dual;
+-- select place_dispo(2 ,'30-JUN-2019') from dual;
 -- g-----------------------------------------------------
 
 
@@ -168,7 +168,6 @@ IS
 	montant_sem NUMBER(7,2) ; 
 
 BEGIN
-
 	nb_reserve := place_reserve(idInput, dateInput); 
 	montant_sem := tarif_sem(idInput, dateInput);
 RETURN ( (montant_sem*nb_reserve) ) ;
